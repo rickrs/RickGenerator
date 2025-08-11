@@ -159,6 +159,26 @@ class Admin {
             echo '<p class="description">OpenAI/Gemini: busca da API. Anthropic: lista padrão. Em "Custom", digite o ID que quiser.</p>';
             echo '</div>';
         }, 'aiw_settings', 'aiw_providers');
+        add_settings_field('openai_api_key', __('OpenAI API Key', 'seo-llmo-writer'), function(){
+    $opt = get_option('aiw_settings', []);
+    $val = $opt['providers']['openai']['api_key'] ?? '';
+    echo '<input type="password" name="aiw_settings[providers][openai][api_key]" value="' . esc_attr($val) . '" class="regular-text" />';
+    echo '<p class="description">Obtenha em <a href="https://platform.openai.com/api-keys" target="_blank">OpenAI</a>.</p>';
+}, 'aiw_settings', 'aiw_providers');
+
+add_settings_field('gemini_api_key', __('Gemini API Key', 'seo-llmo-writer'), function(){
+    $opt = get_option('aiw_settings', []);
+    $val = $opt['providers']['gemini']['api_key'] ?? '';
+    echo '<input type="password" name="aiw_settings[providers][gemini][api_key]" value="' . esc_attr($val) . '" class="regular-text" />';
+    echo '<p class="description">Obtenha em <a href="https://aistudio.google.com/app/apikey" target="_blank">Google AI Studio</a>.</p>';
+}, 'aiw_settings', 'aiw_providers');
+
+add_settings_field('anthropic_api_key', __('Anthropic API Key', 'seo-llmo-writer'), function(){
+    $opt = get_option('aiw_settings', []);
+    $val = $opt['providers']['anthropic']['api_key'] ?? '';
+    echo '<input type="password" name="aiw_settings[providers][anthropic][api_key]" value="' . esc_attr($val) . '" class="regular-text" />';
+    echo '<p class="description">Obtenha em <a href="https://console.anthropic.com/settings/keys" target="_blank">Anthropic Console</a>.</p>';
+}, 'aiw_settings', 'aiw_providers');
         // Defaults de geração
         add_settings_section('aiw_defaults', __('Padrões de Geração', 'seo-llmo-writer'), function(){
             echo '<p>'.esc_html__('Defina padrões para mínimo de palavras e tom.', 'seo-llmo-writer').'</p>';
